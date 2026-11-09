@@ -1,0 +1,27 @@
+title: Tijn Flinterman
+description: Gameplay programmer portfolio.
+lang: en
+
+# Project site (https://username.github.io/repo-name/)? Set baseurl to "/repo-name".
+# User site (https://username.github.io/)? Leave it empty.
+baseurl: ""
+url: ""
+
+permalink: /blog/:title/
+
+collections:
+  projects:
+    output: true
+    permalink: /work/:name/
+
+defaults:
+  - scope: { path: "", type: "projects" }
+    values: { layout: "project" }
+  - scope: { path: "", type: "posts" }
+    values: { layout: "post" }
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

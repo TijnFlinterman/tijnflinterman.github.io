@@ -1,0 +1,29 @@
+---
+layout: default
+title: Blog
+title_a: Notes &
+title_b: Write-ups
+---
+<div class="page">
+  <p class="note">&lt;!-- Blog --&gt;</p>
+  <h1 class="display"><span>{{ page.title_a }}</span><span class="dim">{{ page.title_b }}</span></h1>
+
+  <section class="block">
+    <p class="note">&lt;!-- Posts({{ site.posts.size | prepend: "0" | slice: -2, 2 }}) --&gt;</p>
+    {%- if site.posts.size == 0 -%}
+      <p class="empty">No posts yet. Add a Markdown file to <code>_posts</code> named like <code>2026-11-01-my-post.md</code>.</p>
+    {%- else -%}
+    <ul class="posts">
+      {%- for post in site.posts -%}
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+          <span class="post-title">{{ post.title }}</span>
+          <span class="post-excerpt">{{ post.summary | default: post.excerpt | strip_html | truncate: 140 }}</span>
+        </a>
+      </li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+  </section>
+</div>

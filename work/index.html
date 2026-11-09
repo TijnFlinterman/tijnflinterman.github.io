@@ -1,0 +1,20 @@
+---
+layout: default
+title: Work
+title_a: Selected
+title_b: Projects
+---
+{%- assign all = site.projects | sort: "order" -%}
+<div class="page">
+  <p class="note">&lt;!-- Work I have done --&gt;</p>
+  <h1 class="display"><span>{{ page.title_a }}</span><span class="dim">{{ page.title_b }}</span></h1>
+
+  <section class="block">
+    <p class="note">&lt;!-- Projects({{ all.size | prepend: "0" | slice: -2, 2 }}) --&gt;</p>
+    <ul class="cards">
+      {%- for pr in all -%}
+        {%- include card.html project=pr -%}
+      {%- endfor -%}
+    </ul>
+  </section>
+</div>

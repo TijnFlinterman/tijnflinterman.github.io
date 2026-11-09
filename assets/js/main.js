@@ -1,159 +1,99 @@
-/*
-	Read Only by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+(function () {
+  var doc = document;
+  var body = doc.body;
+  var LINE = 22;
+  var mq = window.matchMedia("(max-width: 900px)");
 
-(function($) {
+  // "My time" in the top bar
+  var timeEl = doc.getElementById("localTime");
+  function tick() {
+    if (!timeEl) return;
+    var opts = { hour: "2-digit", minute: "2-digit" };
+    var tz = timeEl.getAttribute("data-tz");
+    var text;
+    try {
+      text = new Intl.DateTimeFormat("en-US", tz ? Object.assign({ timeZone: tz }, opts) : opts).format(new Date());
+    } catch (e) {
+      text = new Intl.DateTimeFormat("en-US", opts).format(new Date());
+    }
+    timeEl.textContent = text;
+  }
+  tick();
+  setInterval(tick, 30000);
 
-	var $window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$titleBar = null,
-		$nav = $('#nav'),
-		$wrapper = $('#wrapper');
+  // Line numbers in the gutter follow the height of the content
+  var inner = doc.getElementById("editorInner");
+  var gutter = doc.getElementById("gutter");
+  var count = 0;
+  var queued = false;
+  function drawGutter() {
+    queued = false;
+    if (!inner || !gutter || gutter.offsetParent === null) return;
+    var n = Math.max(1, Math.ceil((inner.offsetHeight - 16) / LINE));
+    if (n === count) return;
+    if (n > count) {
+      var frag = doc.createDocumentFragment();
+      for (var i = count + 1; i <= n; i++) {
+        var s = doc.createElement("span");
+        s.textContent = i;
+        frag.appendChild(s);
+      }
+      gutter.appendChild(frag);
+    } else {
+      while (gutter.children.length > n) gutter.removeChild(gutter.lastChild);
+    }
+    count = n;
+  }
+  function queueGutter() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(drawGutter);
+  }
+  if (inner && "ResizeObserver" in window) new ResizeObserver(queueGutter).observe(inner);
+  window.addEventListener("load", queueGutter);
+  window.addEventListener("resize", queueGutter);
+  queueGutter();
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '1025px',  '1280px' ],
-			medium:   [ '737px',   '1024px' ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ],
-		});
+  // Profile drawer on small screens
+  var menuBtn = doc.getElementById("menuBtn");
+  var closeBtn = doc.getElementById("drawerClose");
+  var scrim = doc.getElementById("scrim");
+  var profile = doc.getElementById("profile");
+  function setDrawer(open) {
+    body.classList.toggle("drawer-open", open);
+    if (menuBtn) {
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      menuBtn.setAttribute("aria-label", open ? "Close profile" : "Open profile");
+    }
+    if (open && closeBtn) closeBtn.focus();
+    if (!open && menuBtn && doc.activeElement && profile && profile.contains(doc.activeElement)) menuBtn.focus();
+  }
+  if (menuBtn) menuBtn.addEventListener("click", function () { setDrawer(!body.classList.contains("drawer-open")); });
+  if (closeBtn) closeBtn.addEventListener("click", function () { setDrawer(false); });
+  if (scrim) scrim.addEventListener("click", function () { setDrawer(false); });
+  doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && body.classList.contains("drawer-open")) setDrawer(false); });
+  var onChange = function () { if (!mq.matches) setDrawer(false); };
+  if (mq.addEventListener) mq.addEventListener("change", onChange); else if (mq.addListener) mq.addListener(onChange);
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
-
-	// Tweaks/fixes.
-
-		// Polyfill: Object fit.
-			if (!browser.canUse('object-fit')) {
-
-				$('.image[data-position]').each(function() {
-
-					var $this = $(this),
-						$img = $this.children('img');
-
-					// Apply img as background.
-						$this
-							.css('background-image', 'url("' + $img.attr('src') + '")')
-							.css('background-position', $this.data('position'))
-							.css('background-size', 'cover')
-							.css('background-repeat', 'no-repeat');
-
-					// Hide img.
-						$img
-							.css('opacity', '0');
-
-				});
-
-			}
-
-	// Header Panel.
-
-		// Nav.
-			var $nav_a = $nav.find('a');
-
-			$nav_a
-				.addClass('scrolly')
-				.on('click', function() {
-
-					var $this = $(this);
-
-					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
-							return;
-
-					// Deactivate all links.
-						$nav_a.removeClass('active');
-
-					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-						$this
-							.addClass('active')
-							.addClass('active-locked');
-
-				})
-				.each(function() {
-
-					var	$this = $(this),
-						id = $this.attr('href'),
-						$section = $(id);
-
-					// No section for this link? Bail.
-						if ($section.length < 1)
-							return;
-
-					// Scrollex.
-						$section.scrollex({
-							mode: 'middle',
-							top: '5vh',
-							bottom: '5vh',
-							initialize: function() {
-
-								// Deactivate section.
-									$section.addClass('inactive');
-
-							},
-							enter: function() {
-
-								// Activate section.
-									$section.removeClass('inactive');
-
-								// No locked links? Deactivate all links and activate this section's one.
-									if ($nav_a.filter('.active-locked').length == 0) {
-
-										$nav_a.removeClass('active');
-										$this.addClass('active');
-
-									}
-
-								// Otherwise, if this section's link is the one that's locked, unlock it.
-									else if ($this.hasClass('active-locked'))
-										$this.removeClass('active-locked');
-
-							}
-						});
-
-				});
-
-		// Title Bar.
-			$titleBar = $(
-				'<div id="titleBar">' +
-					'<a href="#header" class="toggle"></a>' +
-					'<span class="title">' + $('#logo').html() + '</span>' +
-				'</div>'
-			)
-				.appendTo($body);
-
-		// Panel.
-			$header
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right',
-					target: $body,
-					visibleClass: 'header-visible'
-				});
-
-	// Scrolly.
-		$('.scrolly').scrolly({
-			speed: 1000,
-			offset: function() {
-
-				if (breakpoints.active('<=medium'))
-					return $titleBar.height();
-
-				return 0;
-
-			}
-		});
-
-})(jQuery);
+  // Index on project pages: highlight the section in view
+  var links = Array.prototype.slice.call(doc.querySelectorAll(".index a[href^='#']"));
+  var editor = doc.getElementById("editor");
+  if (links.length && "IntersectionObserver" in window) {
+    var map = {};
+    var targets = [];
+    links.forEach(function (a) {
+      var el = doc.getElementById(a.getAttribute("href").slice(1));
+      if (el) { map[el.id] = a; targets.push(el); }
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove("is-active"); a.removeAttribute("aria-current"); });
+        var a = map[en.target.id];
+        if (a) { a.classList.add("is-active"); a.setAttribute("aria-current", "true"); }
+      });
+    }, { root: editor, rootMargin: "-5% 0px -75% 0px" });
+    targets.forEach(function (t) { io.observe(t); });
+    if (map["work-info"]) map["work-info"].classList.add("is-active");
+  }
+})();

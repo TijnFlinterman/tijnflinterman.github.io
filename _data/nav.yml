@@ -1,0 +1,7 @@
+# Top bar tabs. `url` "/" matches only the home page; other urls match any page under them.
+- label: about.cpp
+  url: /
+- label: work.json
+  url: /work/
+- label: blog.md
+  url: /blog/

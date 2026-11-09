@@ -1,0 +1,10 @@
+{%- assign pr = include.project -%}
+<li>
+  <a class="card" href="{{ pr.url | relative_url }}">
+    <span class="card-head">
+      <span class="card-title">{{ pr.title }}</span>
+      <span class="card-go">{% include icon.html name="arrow-right" %}</span>
+    </span>
+    <span class="card-media"><img src="{{ pr.cover | default: '/assets/img/placeholder.svg' | relative_url }}" alt="" loading="lazy"></span>
+  </a>
+</li>

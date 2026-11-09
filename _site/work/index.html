@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Work | Tijn Flinterman</title>
+  <meta name="description" content="Gameplay programmer portfolio.">
+  <meta name="theme-color" content="#181818">
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+
+  <header class="topbar">
+    <button class="menu-btn" id="menuBtn" type="button" aria-controls="profile" aria-expanded="false" aria-label="Open profile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+</button>
+    <span class="welcome">Welcome to my portfolio!</span>
+    <nav class="tabs" aria-label="Pages"><a class="tab" href="/">about.cpp</a><a class="tab is-active" href="/work/" aria-current="page">work.json</a><a class="tab" href="/blog/">blog.md</a></nav>
+    <div class="topbar-right"><span class="pill"><i class="dot" aria-hidden="true"></i>Open to internships</span><span class="where">City, Country <span class="sep" aria-hidden="true">•</span> My time: <time id="localTime" data-tz="Europe/Amsterdam"></time></span>
+    </div>
+  </header>
+
+  <div class="scrim" id="scrim"></div>
+
+  <div class="app">
+    <aside class="profile" id="profile" aria-label="Profile">
+      <button class="drawer-close" id="drawerClose" type="button" aria-label="Close profile"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+</button>
+      <div class="profile-scroll">
+        <div class="who">
+          <img class="avatar" src="/assets/img/avatar.svg" alt="Portrait of Tijn Flinterman" width="50" height="50">
+          <div>
+            <p class="name">Tijn Flinterman</p>
+            <p class="role">Gameplay programmer</p>
+          </div>
+        </div>
+        <p class="bio">Write two or three lines about yourself and what you focus on.</p>
+        <ul class="facts"><li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>
+<span>Your experience</span></li><li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+<span>City, Country</span></li><li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 3v2M6 5c.5 4 3 7 6.5 8M12 5c-.7 3.5-3 6.5-7 8M13 21l4-10 4 10M14.5 18h5"/></svg>
+<span>Languages you speak</span></li><li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+<a href="mailto:you@example.com">you@example.com</a></li><li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+<a href="tel:+000000000000">+00 000 000 000</a></li></ul><a class="btn-split" href="/assets/cv.pdf" download><span>Download CV</span><span class="btn-split-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+</span></a></div>
+      <div class="profile-cta">
+        <a class="btn-solid" href="https://example.com/book">Schedule a call</a>
+        <a class="btn-ghost" href="mailto:you@example.com">Work with me</a>
+      </div>
+    </aside>
+
+    <div class="editor" id="editor">
+      <div class="editor-inner" id="editorInner">
+        <div class="gutter" id="gutter" aria-hidden="true"></div>
+        <main id="content">
+          <div class="page">
+  <p class="note">&lt;!-- Work I have done --&gt;</p>
+  <h1 class="display"><span>Selected</span><span class="dim">Projects</span></h1>
+
+  <section class="block">
+    <p class="note">&lt;!-- Projects(03) --&gt;</p>
+    <ul class="cards"><li>
+  <a class="card" href="/work/project-one/">
+    <span class="card-head">
+      <span class="card-title">Project one</span>
+      <span class="card-go"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m0 0-6-6m6 6-6 6"/></svg>
+</span>
+    </span>
+    <span class="card-media"><img src="/assets/img/placeholder.svg" alt="" loading="lazy"></span>
+  </a>
+</li>
+<li>
+  <a class="card" href="/work/project-two/">
+    <span class="card-head">
+      <span class="card-title">Project two</span>
+      <span class="card-go"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m0 0-6-6m6 6-6 6"/></svg>
+</span>
+    </span>
+    <span class="card-media"><img src="/assets/img/placeholder.svg" alt="" loading="lazy"></span>
+  </a>
+</li>
+<li>
+  <a class="card" href="/work/project-three/">
+    <span class="card-head">
+      <span class="card-title">Project three</span>
+      <span class="card-go"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15m0 0-6-6m6 6-6 6"/></svg>
+</span>
+    </span>
+    <span class="card-media"><img src="/assets/img/placeholder.svg" alt="" loading="lazy"></span>
+  </a>
+</li>
+</ul>
+  </section>
+</div>
+
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <footer class="statusbar">
+    <span class="status-text">3 projects in this portfolio</span>
+    <span class="socials"><a href="https://github.com/your-username" aria-label="GitHub"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.3-4-2-6-2.5m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+</a><a href="https://www.linkedin.com/in/your-name" aria-label="LinkedIn"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+</a></span>
+  </footer>
+</body>
+</html>

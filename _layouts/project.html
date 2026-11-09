@@ -1,0 +1,77 @@
+---
+layout: default
+---
+{%- assign cover = page.cover | default: "/assets/img/placeholder.svg" -%}
+<div class="with-index">
+  <article class="page project">
+    <a class="back" href="{{ '/work/' | relative_url }}">{% include icon.html name="arrow-left" %}<span>Back to all works</span></a>
+    <h1 class="display single">{{ page.title }}</h1>
+
+    <section id="work-info" class="block">
+      <p class="note">&lt;!-- Work info --&gt;</p>
+      <div class="info-row">
+        <dl class="info">
+          {%- if page.client -%}<div><dt>Client:</dt><dd>{{ page.client }}</dd></div>{%- endif -%}
+          {%- if page.role -%}<div><dt>Role:</dt><dd>{{ page.role }}</dd></div>{%- endif -%}
+          {%- if page.year -%}<div><dt>Year:</dt><dd>{{ page.year }}</dd></div>{%- endif -%}
+        </dl>
+        {%- if page.live_url -%}
+        <a class="btn-outline" href="{{ page.live_url }}" rel="noopener">{{ page.live_label | default: "View live site" }}</a>
+        {%- endif -%}
+      </div>
+      <img class="hero-img" src="{{ cover | relative_url }}" alt="">
+    </section>
+
+    <section id="overview" class="block prose">
+      {{ content }}
+    </section>
+
+    {%- if page.gallery -%}
+    <section id="gallery" class="block">
+      <div class="gallery">
+        {%- for g in page.gallery -%}<img src="{{ g | relative_url }}" alt="" loading="lazy">{%- endfor -%}
+      </div>
+    </section>
+    {%- endif -%}
+
+    {%- if page.results -%}
+    <section id="result" class="block prose">
+      <h2>Result</h2>
+      <ul>{%- for r in page.results -%}<li>{{ r }}</li>{%- endfor -%}</ul>
+    </section>
+    {%- endif -%}
+
+    {%- if page.feedback -%}
+    <section id="feedback" class="block prose">
+      <h2>Client feedback</h2>
+      <blockquote><p>{{ page.feedback.quote }}</p><footer>{{ page.feedback.author }}</footer></blockquote>
+    </section>
+    {%- endif -%}
+
+    <section id="more" class="block">
+      <p class="note">&lt;!-- More works --&gt;</p>
+      <ul class="cards">
+        {%- assign shown = 0 -%}
+        {%- assign all = site.projects | sort: "order" -%}
+        {%- for o in all -%}
+          {%- if o.url != page.url and shown < 2 -%}
+            {%- include card.html project=o -%}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </section>
+  </article>
+
+  <aside class="index" aria-label="On this page">
+    <p class="index-title">Index</p>
+    <ul>
+      <li><a href="#work-info">Work info</a></li>
+      <li><a href="#overview">Overview</a></li>
+      {%- if page.gallery -%}<li><a href="#gallery">Gallery</a></li>{%- endif -%}
+      {%- if page.results -%}<li><a href="#result">Result</a></li>{%- endif -%}
+      {%- if page.feedback -%}<li><a href="#feedback">Client feedback</a></li>{%- endif -%}
+      <li><a href="#more">More works</a></li>
+    </ul>
+  </aside>
+</div>

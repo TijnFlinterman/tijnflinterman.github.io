@@ -1,0 +1,8 @@
+- group: Languages
+  items: ["C++"]
+- group: Engines
+  items: ["Unreal Engine", "Custom engines"]
+- group: Focus
+  items: ["Gameplay AI", "Engine and tools", "Graphics"]
+- group: Workflow
+  items: ["Perforce", "Git"]

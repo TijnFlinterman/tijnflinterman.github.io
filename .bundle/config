@@ -1,0 +1,4 @@
+---
+BUNDLE_BUILD__BIGDECIMAL: "--with-cflags=-Wno-error=incompatible-pointer-types"
+BUNDLE_BUILD__PRISM: "--with-cflags=-Wno-error=incompatible-pointer-types"
+BUNDLE_BUILD__HTTP_PARSER__RB: "--with-cflags=-Wno-error=incompatible-pointer-types"

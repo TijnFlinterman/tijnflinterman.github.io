@@ -1,0 +1,39 @@
+# Everything in the sidebar, top bar and status bar comes from this file.
+name: Tijn Flinterman
+role: Gameplay programmer
+avatar: /assets/img/avatar.svg          # replace with your photo (square, at least 200x200)
+welcome: Welcome to my portfolio!
+bio: Write two or three lines about yourself and what you focus on.
+
+facts:
+  - icon: briefcase
+    text: 7+ years of experience
+  - icon: pin
+    text: Oss, Netherlands
+  - icon: language
+    text: Dutch (Native), English (C1)
+  - icon: mail
+    text: t.flinterman@outlook.com
+    href: mailto:t.flinterman@outlook.com
+  - icon: phone
+    text: +31 (0)6 53401710
+    href: tel:+000000000000
+
+cv: /assets/Tijn_Flinterman_CV.pdf                # put your PDF at assets/cv.pdf, or empty the value to hide the button
+schedule_label: Schedule a call
+schedule_url: https://example.com/book
+contact_label: Work with me
+contact_url: mailto:t.flinterman@outlook.com
+
+availability: Open to internships        # green pill in the top bar
+location: Oss, Netherlands
+timezone: Europe/Amsterdam               # IANA name, used for "My time"
+
+statusbar: ""                            # leave empty to show the project count automatically
+socials:
+  - icon: github
+    label: GitHub
+    url: https://github.com/TijnFlinterman
+  - icon: linkedin
+    label: LinkedIn
+    url: https://www.linkedin.com/in/tijn-flinterman/

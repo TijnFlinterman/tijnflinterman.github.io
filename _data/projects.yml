@@ -1,0 +1,39 @@
+- id: squad-breach-ai
+  file: SquadBreachAI.cpp
+  class: SquadBreachAI
+  summary: Tactical AI for a SWAT squad that moves in formation, breaches and clears rooms.
+  details:
+    - A squad state machine takes the team from forming up through slicing the pie, breaching and room clearing.
+    - Roles are derived from slot order, so when an agent peels off to make an arrest, the rest of the stack is promoted automatically.
+    - Corridor formations follow Army field manual doctrine and are authored in a custom formation editor instead of being hardcoded.
+    - Levels are authored in Tiled. A greedy tile merge turned 15,674 floor tiles into 10 navmesh rectangles.
+    - Vision cones, fog of war and a checkpoint system that fully undoes arrests on restart.
+    - A live ImGui panel lets designers tune every parameter while the squad runs.
+  stack: ["C++", "Bee engine", "ImGui", "Tiled"]
+  link_label: ""
+  link: ""
+
+- id: curtain-calls
+  file: CurtainCalls.cpp
+  class: CurtainCalls
+  summary: Theatre-themed Unreal Engine team project. I built enemy AI, audio and gameplay systems across several blocks.
+  details:
+    - Lycan enemy AI with behavior tree tasks in C++, including a lunge attack with a curve-driven speed ramp and a weighted random selector that reads distance curves.
+    - Ink Spitter enemy with a per-muzzle spray system that reacts to the stasis mechanic.
+    - Physical hit reactions and ragdoll death for the Performer enemy, with adaptive mouth control in the animation blueprint.
+    - FMOD audio integration, separating looping sounds from one-shot animation triggers.
+    - A fully playable 88-key piano built in Blueprint.
+  stack: ["Unreal Engine", "C++", "Blueprint", "FMOD", "Perforce"]
+  link_label: ""
+  link: ""
+
+- id: dx12-renderer
+  file: DX12Renderer.cpp
+  class: DX12Renderer
+  summary: Self-directed project to learn modern graphics by building a renderer from scratch.
+  details:
+    - Built in one focused session every Friday, with a SMART goal to keep the scope honest.
+    - Written directly against DirectX 12 without an engine underneath.
+  stack: ["C++", "DirectX 12"]
+  link_label: ""
+  link: ""
