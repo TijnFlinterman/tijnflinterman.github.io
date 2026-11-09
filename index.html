@@ -13,18 +13,19 @@ title_b: Programmer
 
     <section id="work" class="block">
       <p class="note">&lt;!-- Work --&gt;</p>
-      <ul class="cards">
+      <ul class="cards cards--two">
         {%- assign shown = 0 -%}
         {%- for pr in all -%}
-          {%- if shown < 6 -%}
+          {%- if shown < 4 -%}
             {%- include card.html project=pr -%}
             {%- assign shown = shown | plus: 1 -%}
           {%- endif -%}
         {%- endfor -%}
       </ul>
-      {%- if all.size > 6 -%}
-      <p class="more-row"><a class="btn-outline" href="{{ '/work/' | relative_url }}">All projects</a></p>
-      {%- endif -%}
+      <div class="view-all">
+        <p>Every project I have built, in one place.</p>
+        <a class="btn-solid" href="{{ '/work/' | relative_url }}">View all works</a>
+      </div>
     </section>
 
     <div class="rule-row block" role="group" aria-label="Since {{ p.since }}">
