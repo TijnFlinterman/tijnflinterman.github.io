@@ -1,0 +1,7 @@
+# Placeholder levels (0-100). Edit names and numbers to match you.
+- { name: "C++", level: 80 }
+- { name: "Unreal Engine", level: 75 }
+- { name: "DirectX 12", level: 50 }
+- { name: "ImGui", level: 70 }
+- { name: "Perforce", level: 70 }
+- { name: "Git", level: 85 }

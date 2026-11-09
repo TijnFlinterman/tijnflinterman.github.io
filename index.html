@@ -1,40 +1,170 @@
 ---
 layout: default
-title: About
-title_a: Hello, I'm
-title_b: Tijn Flinterman
+title: Home
+title_a: Gameplay
+title_b: Programmer
 ---
-<div class="page">
-  <p class="note">&lt;!-- About me --&gt;</p>
-  <h1 class="display"><span>{{ page.title_a }}</span><span class="dim">{{ page.title_b }}</span></h1>
+{%- assign p = site.data.profile -%}
+{%- assign all = site.projects | sort: "order" -%}
+<div class="with-index">
+  <div class="page">
+    <p class="note">&lt;!-- Hello --&gt;</p>
+    <h1 class="display"><span>{{ page.title_a }}</span><span class="dim">{{ page.title_b }}</span></h1>
 
-  <section class="block prose">
-    <p>Write a short introduction here. Say what you do, what you are looking for and what you want people to remember after visiting.</p>
-    <p>A second paragraph can cover how you work or what you are learning right now.</p>
-  </section>
+    <section id="work" class="block">
+      <p class="note">&lt;!-- Work --&gt;</p>
+      <ul class="cards">
+        {%- assign shown = 0 -%}
+        {%- for pr in all -%}
+          {%- if shown < 6 -%}
+            {%- include card.html project=pr -%}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      {%- if all.size > 6 -%}
+      <p class="more-row"><a class="btn-outline" href="{{ '/work/' | relative_url }}">All projects</a></p>
+      {%- endif -%}
+    </section>
 
-  <section class="block">
-    <p class="note">&lt;!-- Experience --&gt;</p>
-    <ol class="timeline">
-      {%- for e in site.data.experience -%}
-      <li>
-        <p class="tl-period">{{ e.period }}</p>
+    <div class="rule-row block" role="group" aria-label="Since {{ p.since }}">
+      <span class="rr-small">Since</span><i class="rule" aria-hidden="true"></i><span class="rr-big">{{ p.since }}</span>
+    </div>
+
+    <section id="about-me" class="block">
+      <p class="note">&lt;!-- About me --&gt;</p>
+      <h2 class="section-title">About me</h2>
+      <div class="prose">
+        <p>Write a short introduction here. Say what you do, what you are looking for and what you want people to remember after visiting.</p>
+        <p>A second paragraph can cover how you work or what you are learning right now.</p>
+      </div>
+      <ol class="timeline">
+        {%- for e in site.data.experience -%}
+        <li>
+          <p class="tl-period">{{ e.period }}</p>
+          <div>
+            <h3 class="tl-title">{{ e.title }}</h3>
+            <p class="tl-org">{{ e.org }}</p>
+          </div>
+        </li>
+        {%- endfor -%}
+      </ol>
+      <div class="follow">
+        <span>Follow me:</span>
+        {%- for s in p.socials -%}
+        <a href="{{ s.url }}" aria-label="{{ s.label }}">{% include icon.html name=s.icon %}</a>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <section id="what-i-do" class="block">
+      <p class="note">&lt;!-- What I do --&gt;</p>
+      <h2 class="section-title">What I do</h2>
+      <ol class="services">
+        {%- for s in site.data.services -%}
+        <li>
+          <h3>{{ s.title }}</h3>
+          <ul>{%- for i in s.items -%}<li>{{ i }}</li>{%- endfor -%}</ul>
+        </li>
+        {%- endfor -%}
+      </ol>
+    </section>
+
+    <section id="tech-stack" class="block">
+      <p class="note">&lt;!-- Tech stack --&gt;</p>
+      <h2 class="section-title">Tech stack</h2>
+      <ul class="stack">
+        {%- for s in site.data.stack -%}
+        <li>
+          <span class="stack-row"><span>{{ s.name }}</span><span>{{ s.level }}%</span></span>
+          <span class="bar" aria-hidden="true"><i style="width: {{ s.level }}%"></i></span>
+        </li>
+        {%- endfor -%}
+      </ul>
+    </section>
+
+    <section id="awards" class="block">
+      <p class="note">&lt;!-- Awards --&gt;</p>
+      <h2 class="section-title">Awards</h2>
+      <div class="awards">
+        {%- for g in site.data.awards -%}
         <div>
-          <h2 class="tl-title">{{ e.title }}</h2>
-          <p class="tl-org">{{ e.org }}</p>
-          <p>{{ e.text }}</p>
+          <h3>{{ g.title }}</h3>
+          <ul>
+            {%- for a in g.items -%}<li><span>{{ a.name }}</span><span class="aw-year">{{ a.year }}</span></li>{%- endfor -%}
+          </ul>
         </div>
-      </li>
-      {%- endfor -%}
-    </ol>
-  </section>
+        {%- endfor -%}
+      </div>
+    </section>
 
-  <section class="block">
-    <p class="note">&lt;!-- Skills --&gt;</p>
-    <dl class="skills">
-      {%- for g in site.data.skills -%}
-      <div><dt>{{ g.group }}</dt><dd>{{ g.items | join: ", " }}</dd></div>
-      {%- endfor -%}
-    </dl>
-  </section>
+    <div class="rule-row band block" role="group" aria-label="{{ p.band_a }} {{ p.band_b }}">
+      <span class="rr-big">{{ p.band_a }}</span><i class="rule" aria-hidden="true"></i><span class="rr-big">{{ p.band_b }}</span>
+    </div>
+
+    <section id="feedback" class="block">
+      <p class="note">&lt;!-- Feedback --&gt;</p>
+      <h2 class="section-title">Feedback</h2>
+      <ul class="quotes" id="quotes">
+        {%- for t in site.data.testimonials -%}
+        <li>
+          <blockquote><p>{{ t.quote }}</p></blockquote>
+          <p class="q-by"><strong>{{ t.name }}</strong>, {{ t.role }}</p>
+        </li>
+        {%- endfor -%}
+      </ul>
+      <p class="more-row"><button class="btn-outline" id="loadMore" type="button" hidden>Load more</button></p>
+    </section>
+
+    <section id="blog" class="block">
+      <p class="note">&lt;!-- Blog --&gt;</p>
+      <h2 class="section-title">Blog</h2>
+      <ul class="post-cards">
+        {%- assign n = 0 -%}
+        {%- for post in site.posts -%}
+          {%- if n < 2 -%}
+          <li>
+            <a href="{{ post.url | relative_url }}">
+              <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+              <span class="pc-title">{{ post.title }}</span>
+              <span class="pc-link">Read full post {% include icon.html name="arrow-right" %}</span>
+            </a>
+          </li>
+          {%- assign n = n | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+      {%- if site.posts.size > 2 -%}
+      <p class="more-row"><a class="btn-outline" href="{{ '/blog/' | relative_url }}">All posts</a></p>
+      {%- endif -%}
+    </section>
+
+    <section id="contact" class="block">
+      <p class="note">&lt;!-- Contact me --&gt;</p>
+      <h2 class="section-title">Contact me</h2>
+      <form class="form"{% if p.form_action and p.form_action != "" %} action="{{ p.form_action }}" method="post"{% else %} data-mailto="{{ p.form_email }}"{% endif %}>
+        <div class="field"><label for="f-first">First name <span class="req" aria-hidden="true">*</span></label><input id="f-first" name="first_name" type="text" required autocomplete="given-name"></div>
+        <div class="field"><label for="f-last">Last name <span class="req" aria-hidden="true">*</span></label><input id="f-last" name="last_name" type="text" required autocomplete="family-name"></div>
+        <div class="field"><label for="f-email">Email address <span class="req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="f-subject">Subject <span class="req" aria-hidden="true">*</span></label><input id="f-subject" name="subject" type="text" required></div>
+        <div class="field wide"><label for="f-message">Message</label><textarea id="f-message" name="message" rows="6"></textarea></div>
+        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="wide"><button class="btn-solid btn-submit" type="submit">Send message</button><p class="form-note" id="formNote" role="status"></p></div>
+      </form>
+    </section>
+  </div>
+
+  <aside class="index" aria-label="On this page">
+    <p class="index-title">Index</p>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about-me">About me</a></li>
+      <li><a href="#what-i-do">What I do</a></li>
+      <li><a href="#tech-stack">Tech stack</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact me</a></li>
+    </ul>
+  </aside>
 </div>

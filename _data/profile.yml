@@ -7,33 +7,40 @@ bio: Write two or three lines about yourself and what you focus on.
 
 facts:
   - icon: briefcase
-    text: 7+ years of experience
+    text: Your experience
   - icon: pin
-    text: Oss, Netherlands
+    text: City, Country
   - icon: language
-    text: Dutch (Native), English (C1)
+    text: Languages you speak
   - icon: mail
-    text: t.flinterman@outlook.com
-    href: mailto:t.flinterman@outlook.com
+    text: you@example.com
+    href: mailto:you@example.com
   - icon: phone
-    text: +31 (0)6 53401710
+    text: +00 000 000 000
     href: tel:+000000000000
 
-cv: /assets/Tijn_Flinterman_CV.pdf                # put your PDF at assets/cv.pdf, or empty the value to hide the button
+cv: /assets/cv.pdf                       # put your PDF at assets/cv.pdf, or empty the value to hide the button
 schedule_label: Schedule a call
 schedule_url: https://example.com/book
 contact_label: Work with me
-contact_url: mailto:t.flinterman@outlook.com
+contact_url: mailto:you@example.com
 
 availability: Open to internships        # green pill in the top bar
-location: Oss, Netherlands
+location: City, Country
 timezone: Europe/Amsterdam               # IANA name, used for "My time"
 
 statusbar: ""                            # leave empty to show the project count automatically
 socials:
   - icon: github
     label: GitHub
-    url: https://github.com/TijnFlinterman
+    url: https://github.com/your-username
   - icon: linkedin
     label: LinkedIn
-    url: https://www.linkedin.com/in/tijn-flinterman/
+    url: https://www.linkedin.com/in/your-name
+
+# Landing page extras
+since: 2023                              # shown in the "Since" row
+band_a: Details                          # the two big words in the statement band
+band_b: Matter
+form_action: ""                          # Formspree / Web3Forms URL. Empty = opens the visitor's email app instead
+form_email: you@example.com              # used when form_action is empty

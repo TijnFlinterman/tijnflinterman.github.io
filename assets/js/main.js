@@ -75,7 +75,41 @@
   var onChange = function () { if (!mq.matches) setDrawer(false); };
   if (mq.addEventListener) mq.addEventListener("change", onChange); else if (mq.addListener) mq.addListener(onChange);
 
-  // Index on project pages: highlight the section in view
+  // Feedback: show three, reveal the rest on request
+  var quotes = doc.getElementById("quotes");
+  var more = doc.getElementById("loadMore");
+  if (quotes && more) {
+    var items = Array.prototype.slice.call(quotes.children);
+    var STEP = 3;
+    var shown = STEP;
+    var render = function () {
+      items.forEach(function (li, i) { li.hidden = i >= shown; });
+      more.hidden = shown >= items.length;
+    };
+    more.addEventListener("click", function () {
+      var first = shown;
+      shown += STEP;
+      render();
+      if (items[first]) { var q = items[first].querySelector("blockquote"); if (q) { q.setAttribute("tabindex", "-1"); q.focus({ preventScroll: true }); } }
+    });
+    render();
+  }
+
+  // Contact form: without a form service, open the visitor's email app
+  var form = doc.querySelector("form[data-mailto]");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var subject = f.subject.value;
+      var text = "From: " + f.first_name.value + " " + f.last_name.value + " <" + f.email.value + ">\n\n" + f.message.value;
+      window.location.href = "mailto:" + form.getAttribute("data-mailto") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
+      var note = doc.getElementById("formNote");
+      if (note) note.textContent = "Opening your email app. If nothing happens, write to " + form.getAttribute("data-mailto") + ".";
+    });
+  }
+
+  // Index: highlight the section in view: highlight the section in view
   var links = Array.prototype.slice.call(doc.querySelectorAll(".index a[href^='#']"));
   var editor = doc.getElementById("editor");
   if (links.length && "IntersectionObserver" in window) {

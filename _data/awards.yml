@@ -1,0 +1,9 @@
+- title: Recognition
+  items:
+    - { name: "Award or nomination", year: 2025 }
+    - { name: "Award or nomination", year: 2024 }
+    - { name: "Award or nomination", year: 2023 }
+- title: School and team
+  items:
+    - { name: "Award or mention", year: 2025 }
+    - { name: "Award or mention", year: 2024 }
